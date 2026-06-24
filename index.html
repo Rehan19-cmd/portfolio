@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#0a0a0f" />
+<title>Mudassar — Web Designer & Developer | Live Client Work</title>
+<meta name="description" content="Custom, fast, mobile-first business websites with live WhatsApp & call booking. See real client sites delivered." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0f;--bg2:#10101a;--bg3:#16161f;
+  --txt:#eef0f6;--muted:rgba(238,240,246,.55);--line:rgba(255,255,255,.1);
+  --v:#a78bfa;--c:#22d3ee;--p:#f0abfc;
+  --grad:linear-gradient(120deg,#a78bfa 0%,#22d3ee 55%,#f0abfc 100%);
+  --pad:20px;
+}
+@media(min-width:1024px){:root{--pad:56px}}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--txt);font-family:'Outfit',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}a{text-decoration:none;color:inherit}
+.no-scroll{overflow:hidden}
+#progress{position:fixed;top:0;left:0;height:3px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--grad);z-index:9997;box-shadow:0 0 16px rgba(167,139,250,.6)}
+
+/* PRELOADER */
+#preload{position:fixed;inset:0;z-index:10000;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px}
+.pl-word{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(2.6rem,12vw,5rem);letter-spacing:2px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:0}
+.pl-sub{font-size:.62rem;letter-spacing:5px;color:var(--muted);text-transform:uppercase;opacity:0}
+.pl-bar{width:min(240px,58vw);height:2px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden}
+.pl-fill{height:100%;width:0;background:var(--grad)}
+.pl-pct{font-size:.68rem;letter-spacing:4px;color:var(--muted)}
+
+/* AURORA */
+#bg-field{position:fixed;inset:0;z-index:-2;overflow:hidden;background:var(--bg)}
+.orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.4;will-change:transform}
+.orb-1{width:70vw;height:70vw;left:-18vw;top:-14vh;background:radial-gradient(circle,rgba(167,139,250,.4),transparent 64%)}
+.orb-2{width:64vw;height:64vw;right:-18vw;top:30vh;background:radial-gradient(circle,rgba(34,211,238,.28),transparent 64%)}
+.orb-3{width:60vw;height:60vw;left:16vw;bottom:-16vh;background:radial-gradient(circle,rgba(240,171,252,.2),transparent 64%)}
+.grid-lines{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:60px 60px;opacity:.18;mask-image:radial-gradient(ellipse 80% 60% at 50% 40%,#000,transparent 82%)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px var(--pad);display:flex;align-items:center;justify-content:space-between;transition:all .5s}
+nav.scrolled{background:rgba(10,10,15,.72);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);padding:11px var(--pad)}
+.logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.4rem;letter-spacing:1px}
+.logo span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.nav-links{display:none}
+@media(min-width:1024px){.nav-links{display:flex;gap:30px;list-style:none;align-items:center}
+  .nav-links a{color:var(--muted);font-size:.74rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;transition:color .3s}
+  .nav-links a:hover{color:var(--txt)}
+  .nav-cta{background:var(--grad);color:#0a0a0f!important;padding:9px 18px;border-radius:100px;font-weight:600;letter-spacing:.5px}
+  .nav-cta:hover{box-shadow:0 0 26px rgba(167,139,250,.5)}}
+.ham{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;z-index:1100;padding:6px}
+@media(min-width:1024px){.ham{display:none}}
+.ham span{display:block;width:25px;height:2px;background:var(--txt);border-radius:2px;transition:.35s}
+.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}.ham.open span:nth-child(2){opacity:0}.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{position:fixed;inset:0;z-index:1050;background:rgba(10,10,15,.97);backdrop-filter:blur(24px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;opacity:0;pointer-events:none;transition:opacity .4s}
+.mobile-menu.open{opacity:1;pointer-events:all}
+.mobile-menu a{font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:600;color:var(--txt);padding:8px 0;opacity:0;transform:translateY(20px)}
+.mobile-menu.open a{opacity:1;transform:translateY(0);transition:opacity .5s,transform .5s}
+.mobile-menu.open a:nth-child(1){transition-delay:.08s}.mobile-menu.open a:nth-child(2){transition-delay:.14s}.mobile-menu.open a:nth-child(3){transition-delay:.2s}.mobile-menu.open a:nth-child(4){transition-delay:.26s}
+.mm-cta{background:var(--grad);color:#0a0a0f!important;border-radius:100px;font-size:1rem!important;padding:13px 38px;margin-top:12px}
+
+/* HERO */
+#hero{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:100px var(--pad) 70px;text-align:center}
+@media(min-width:1024px){#hero{perspective:1500px}}
+.hero3d{position:absolute;inset:0;z-index:-1;pointer-events:none;transform-style:preserve-3d;display:none}
+@media(min-width:1024px){.hero3d{display:block}}
+.h3{position:absolute;width:280px;border-radius:10px;overflow:hidden;border:1px solid var(--line);box-shadow:0 34px 80px rgba(0,0,0,.6);filter:brightness(.55) saturate(1.05);will-change:transform}
+.h3 img{width:100%;display:block}
+.h3-1{left:3%;top:20%;transform:translate3d(0,0,-340px) rotateY(20deg)}
+.h3-2{right:3%;top:16%;transform:translate3d(0,0,-460px) rotateY(-20deg)}
+.h3-3{left:7%;bottom:12%;transform:translate3d(0,0,-220px) rotateY(15deg)}
+.h3-4{right:6%;bottom:14%;transform:translate3d(0,0,-380px) rotateY(-15deg)}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:18px;opacity:0;flex-wrap:wrap;justify-content:center}
+.hb-dot{width:7px;height:7px;border-radius:50%;background:#22d3ee;box-shadow:0 0 10px #22d3ee}
+.heb-txt{font-size:.64rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
+.hero-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(2.6rem,9vw,6rem);line-height:1.02;letter-spacing:-1px}
+.hero-title .ch{display:inline-block;opacity:0;transform:translateY(60%)}
+.hero-title em{font-style:normal;background:var(--grad);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 6s linear infinite}
+@keyframes shimmer{to{background-position:200% center}}
+.hero-sub{margin:20px auto 0;max-width:520px;color:var(--muted);font-weight:300;font-size:clamp(.98rem,3.6vw,1.18rem);line-height:1.7;opacity:0}
+.hero-btns{margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;opacity:0}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:.78rem;letter-spacing:.5px;padding:15px 28px;border-radius:100px;cursor:pointer;border:none;transition:all .35s;font-family:'Outfit',sans-serif}
+.btn-grad{background:var(--grad);color:#0a0a0f}
+.btn-grad:hover{box-shadow:0 16px 40px rgba(167,139,250,.4);transform:translateY(-2px)}
+.btn-wa{background:#25D366;color:#04210f}
+.btn-wa:hover{box-shadow:0 16px 40px rgba(37,211,102,.35);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+.btn-ghost:hover{border-color:var(--v);color:#fff;transform:translateY(-2px)}
+.hero-trust{margin-top:38px;display:flex;gap:22px;justify-content:center;flex-wrap:wrap;opacity:0}
+.ht{display:flex;align-items:center;gap:8px;font-size:.74rem;color:var(--muted)}
+.ht b{font-family:'Space Grotesk';color:var(--txt);font-size:1.2rem}
+.scroll-cue{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;font-size:.56rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);opacity:0}
+.scroll-cue::after{content:'';width:1px;height:32px;background:linear-gradient(var(--v),transparent);animation:cue 2s ease-in-out infinite}
+@keyframes cue{0%,100%{opacity:.3;transform:scaleY(.7)}50%{opacity:1;transform:scaleY(1)}}
+
+/* ME BADGE (photo top-right) */
+.me-badge{position:absolute;top:78px;right:var(--pad);z-index:6;display:flex;flex-direction:column;align-items:center;gap:5px;opacity:0}
+.me-badge .me-photo{width:88px;height:88px;border-radius:50%;overflow:hidden;border:2px solid rgba(167,139,250,.5);background:linear-gradient(160deg,rgba(167,139,250,.35),rgba(34,211,238,.18));box-shadow:0 14px 34px rgba(0,0,0,.5)}
+.me-badge .me-photo img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.me-badge .me-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.9rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.me-badge .me-role{font-size:.54rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:-2px}
+@media(min-width:1024px){.me-badge{top:88px}.me-badge .me-photo{width:118px;height:118px}.me-badge .me-name{font-size:1rem}}
+
+/* MARQUEE */
+.mq-wrap{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;overflow:hidden}
+.mq{display:flex;gap:38px;width:max-content;will-change:transform}
+.mq span{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.95rem;color:var(--muted);white-space:nowrap;display:flex;align-items:center;gap:38px;text-transform:uppercase;letter-spacing:1px}
+.mq span::after{content:'◆';background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:.6rem}
+
+/* SECTION */
+.section{padding:80px var(--pad);position:relative}
+@media(min-width:1024px){.section{padding:120px var(--pad)}}
+.inner{max-width:1240px;margin:0 auto}
+.tag{display:inline-flex;align-items:center;gap:11px;font-size:.64rem;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--c);margin-bottom:15px}
+.tag::before{content:'';width:22px;height:1px;background:var(--c)}
+.h2{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(2rem,7vw,3.4rem);line-height:1.08;margin-bottom:16px;letter-spacing:-.5px}
+.h2 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--muted);font-weight:300;font-size:1.02rem;line-height:1.8;max-width:560px}
+.line-wrap{overflow:hidden;display:inline-block;vertical-align:top}
+.char{display:inline-block;transform:translateY(110%);will-change:transform}
+
+/* WORK */
+#work{background:var(--bg)}
+.work-head{margin-bottom:50px}
+.project{display:grid;grid-template-columns:1fr;gap:26px;align-items:center;margin-bottom:70px}
+@media(min-width:920px){.project{grid-template-columns:1.15fr .85fr;gap:50px}.project.flip .pj-visual{order:2}.project.flip .pj-info{order:1}}
+.pj-visual{perspective:1200px}
+.frame{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#15151d;box-shadow:0 30px 70px rgba(0,0,0,.55);transition:transform .3s ease,box-shadow .4s;will-change:transform;transform-style:preserve-3d}
+.frame:hover{box-shadow:0 40px 90px rgba(0,0,0,.7),0 0 40px rgba(167,139,250,.12)}
+.frame-bar{height:34px;display:flex;align-items:center;gap:7px;padding:0 14px;background:#1b1b26;border-bottom:1px solid var(--line)}
+.dot{width:10px;height:10px;border-radius:50%}.d1{background:#ff5f57}.d2{background:#febc2e}.d3{background:#28c840}
+.frame-url{margin-left:10px;font-size:.66rem;color:var(--muted);background:#0e0e16;border-radius:5px;padding:4px 12px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.frame img{width:100%;display:block}
+.pj-no{font-family:'Space Grotesk';font-size:.8rem;color:var(--c);letter-spacing:2px;margin-bottom:8px}
+.pj-cat{font-size:.66rem;letter-spacing:2px;text-transform:uppercase;color:var(--v);margin-bottom:8px}
+.pj-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(1.5rem,5vw,2.2rem);margin-bottom:6px;line-height:1.1}
+.pj-loc{color:var(--muted);font-size:.9rem;margin-bottom:14px}
+.pj-desc{color:var(--muted);font-weight:300;font-size:.95rem;line-height:1.75;margin-bottom:18px}
+.pj-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:.74rem;padding:7px 13px;border-radius:100px;border:1px solid var(--line);background:var(--bg3);color:var(--txt)}
+.chip.wa{border-color:rgba(37,211,102,.4);color:#7ff0a6}
+.chip.live{border-color:rgba(34,211,238,.4);color:#8defff}
+.pj-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn-sm{font-size:.74rem;padding:11px 20px}
+
+/* SERVICES */
+#services{background:var(--bg2)}
+.svc-grid{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:680px){.svc-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.svc-grid{grid-template-columns:repeat(3,1fr)}}
+.svc{background:var(--bg3);border:1px solid var(--line);border-radius:14px;padding:28px 24px;transition:.4s;position:relative;overflow:hidden}
+.svc:hover{border-color:rgba(167,139,250,.4);transform:translateY(-5px)}
+.svc .ic{font-size:1.8rem;margin-bottom:14px}
+.svc h3{font-family:'Space Grotesk';font-weight:600;font-size:1.15rem;margin-bottom:8px}
+.svc p{color:var(--muted);font-size:.88rem;line-height:1.65;font-weight:300}
+
+/* STATS */
+#stats{background:var(--bg);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:34px 18px;text-align:center}
+@media(min-width:1024px){.stat-grid{grid-template-columns:repeat(4,1fr);gap:28px}}
+.stat-num{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(2.4rem,9vw,3.8rem);background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.stat-label{margin-top:7px;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+
+/* CINEMATIC SHOWCASE (scroll-scrub video) */
+#cinema-showcase{position:relative;height:420vh;background:#06070c}
+#cs-sticky{position:sticky;top:0;height:100svh;overflow:hidden;background:#06070c}
+#cs-canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#06070c}
+@media(orientation:portrait){#cs-canvas{object-fit:contain}}
+#cs-tint{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(to bottom,rgba(6,7,12,.6),rgba(6,7,12,.1) 30%,rgba(6,7,12,.12) 62%,rgba(6,7,12,.85))}
+.cs-panel{position:absolute;z-index:3;left:50%;top:50%;transform:translate(-50%,-50%);width:min(640px,90vw);text-align:center;opacity:0;will-change:transform,opacity,filter;text-shadow:0 4px 30px rgba(0,0,0,.85)}
+.cs-eyebrow{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--c);margin-bottom:14px}
+.cs-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(2rem,7vw,4rem);line-height:1.05;margin:0;letter-spacing:-.5px}
+.cs-title em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cs-p{margin:14px auto 0;max-width:440px;color:rgba(238,240,246,.85);font-weight:300;font-size:clamp(.95rem,4vw,1.12rem);line-height:1.75}
+.cs-loader{position:absolute;inset:0;z-index:6;background:#06070c;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;transition:opacity .6s}
+.cs-loader.hide{opacity:0;pointer-events:none}
+.cs-lbar{width:min(220px,55%);height:3px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden}
+.cs-lbar span{display:block;height:100%;width:0;background:var(--grad)}
+.cs-ltxt{font-size:.66rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
+.cs-prog{position:absolute;left:0;bottom:0;height:3px;width:100%;background:rgba(255,255,255,.07);z-index:4}
+.cs-prog span{display:block;height:100%;width:0;background:var(--grad)}
+
+/* CONTACT */
+#contact{background:var(--bg2);position:relative;overflow:hidden;text-align:center}
+#contact::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(167,139,250,.1),transparent 70%)}
+.ct-inner{position:relative;max-width:680px;margin:0 auto}
+.ct-big{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(2.2rem,8vw,4rem);line-height:1.05;margin-bottom:18px;letter-spacing:-.5px}
+.ct-big em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ct-actions{margin-top:34px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.ct-meta{margin-top:30px;display:flex;gap:24px;justify-content:center;flex-wrap:wrap;color:var(--muted);font-size:.86rem}
+.ct-meta a{color:var(--txt);transition:color .3s}.ct-meta a:hover{color:var(--c)}
+
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid var(--line);padding:40px var(--pad);text-align:center}
+.foot-logo{font-family:'Space Grotesk';font-weight:700;font-size:1.3rem;margin-bottom:8px}
+.foot-logo span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.foot-copy{font-size:.74rem;color:var(--muted)}
+
+.rv{opacity:0;transform:translateY(42px)}
+.rvL{opacity:0;transform:translateX(-50px)}.rvR{opacity:0;transform:translateX(50px)}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+</style>
+</head>
+<body class="no-scroll">
+
+<div id="progress"></div>
+
+<!-- PRELOADER -->
+<div id="preload">
+  <div class="pl-word">MUDASSAR</div>
+  <div class="pl-sub">Web Designer &amp; Developer</div>
+  <div class="pl-bar"><div class="pl-fill"></div></div>
+  <div class="pl-pct">0%</div>
+</div>
+
+<div id="bg-field"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div><div class="grid-lines"></div></div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#work" class="mm">Work</a>
+  <a href="#services" class="mm">Services</a>
+  <a href="#contact" class="mm">Contact</a>
+  <a href="https://wa.me/919623223336" target="_blank" class="mm mm-cta">WhatsApp Me</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="logo">MUDASSAR<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://wa.me/919623223336" target="_blank" class="nav-cta">WhatsApp Me</a></li>
+  </ul>
+  <button class="ham" id="ham"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="me-badge" id="me-badge">
+    <div class="me-photo"><img src="mudassar.png" alt="Mudassar"></div>
+    <div class="me-name">Mudassar</div>
+    <div class="me-role">Web Designer</div>
+  </div>
+  <div class="hero3d" id="hero3d">
+    <div class="h3 h3-1"><img src="shots/perfect-e.png" alt=""></div>
+    <div class="h3 h3-2"><img src="shots/good-life.png" alt=""></div>
+    <div class="h3 h3-3"><img src="shots/sai-samarth.png" alt=""></div>
+    <div class="h3 h3-4"><img src="shots/shree-swami.png" alt=""></div>
+  </div>
+  <div>
+    <div class="hero-eyebrow" id="h-eye"><span class="hb-dot"></span><span class="heb-txt">Available for new projects</span></div>
+    <h1 class="hero-title" id="h-title">Websites that turn<br>visitors into <em>customers.</em></h1>
+    <p class="hero-sub" id="h-sub">I design &amp; build fast, modern, mobile-first websites for real businesses — with live WhatsApp &amp; call booking baked in. Here's work that's already live.</p>
+    <div class="hero-btns" id="h-btns">
+      <a href="#work" class="btn btn-grad">View My Work ↓</a>
+      <a href="https://wa.me/919623223336" target="_blank" class="btn btn-wa">💬 WhatsApp Me</a>
+    </div>
+    <div class="hero-trust" id="h-trust">
+      <div class="ht"><b>6</b> live sites</div>
+      <div class="ht"><b>100%</b> mobile-first</div>
+      <div class="ht"><b>Real</b> WhatsApp &amp; call booking</div>
+    </div>
+  </div>
+  <div class="scroll-cue" id="h-cue">Scroll</div>
+</section>
+
+<!-- WORK -->
+<section id="work" class="section">
+  <div class="inner">
+    <div class="work-head"><span class="tag rv">Selected Work · Live</span><h2 class="h2 split">Real Sites, Real Clients</h2><p class="lead rv">Every project below is live right now — click through and try the WhatsApp / call buttons yourself.</p></div>
+
+    <!-- 1 Perfect E -->
+    <div class="project rv">
+      <div class="pj-visual"><a href="https://rehan19-cmd.github.io/perfect-e-services/" target="_blank" class="frame" data-tilt><div class="frame-bar"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="frame-url">rehan19-cmd.github.io/perfect-e-services</span></div><img src="shots/perfect-e.png" alt="Perfect E Services" loading="lazy"></a></div>
+      <div class="pj-info"><div class="pj-no">01</div><div class="pj-cat">E-Commerce Agency</div><h3 class="pj-name">Perfect E Services</h3><div class="pj-loc">Amazon, Flipkart &amp; D2C Growth · Pune</div><p class="pj-desc">A conversion-focused agency site with a working WhatsApp enquiry flow and a clean, trust-building layout for D2C brands.</p><div class="pj-chips"><span class="chip live">● Live</span><span class="chip wa">💬 WhatsApp +91 95612 42323</span></div><div class="pj-actions"><a href="https://rehan19-cmd.github.io/perfect-e-services/" target="_blank" class="btn btn-grad btn-sm">Visit Site ↗</a><a href="https://wa.me/919561242323" target="_blank" class="btn btn-wa btn-sm">Try WhatsApp</a></div></div>
+    </div>
+
+    <!-- 2 Sai Samarth -->
+    <div class="project flip rv">
+      <div class="pj-visual"><a href="https://rehan19-cmd.github.io/sai-samarth-clinic/" target="_blank" class="frame" data-tilt><div class="frame-bar"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="frame-url">rehan19-cmd.github.io/sai-samarth-clinic</span></div><img src="shots/sai-samarth.png" alt="Sai Samarth Clinic" loading="lazy"></a></div>
+      <div class="pj-info"><div class="pj-no">02</div><div class="pj-cat">Healthcare · Clinic</div><h3 class="pj-name">Sai Samarth Clinic</h3><div class="pj-loc">Dr. Prasad B. Pote (BHMS) · Kharadi, Pune</div><p class="pj-desc">A warm, credible clinic site for a family physician — appointment-ready with one-tap call &amp; WhatsApp for patients.</p><div class="pj-chips"><span class="chip live">● Live</span><span class="chip wa">📞 +91 90111 33840</span></div><div class="pj-actions"><a href="https://rehan19-cmd.github.io/sai-samarth-clinic/" target="_blank" class="btn btn-grad btn-sm">Visit Site ↗</a><a href="tel:+919011133840" class="btn btn-ghost btn-sm">Call Line</a></div></div>
+    </div>
+
+    <!-- 3 Good Life -->
+    <div class="project rv">
+      <div class="pj-visual"><a href="https://rehan19-cmd.github.io/good-life-clinic/" target="_blank" class="frame" data-tilt><div class="frame-bar"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="frame-url">rehan19-cmd.github.io/good-life-clinic</span></div><img src="shots/good-life.png" alt="Good Life Clinic" loading="lazy"></a></div>
+      <div class="pj-info"><div class="pj-no">03</div><div class="pj-cat">Healthcare · Clinic</div><h3 class="pj-name">Good Life Clinic</h3><div class="pj-loc">Dr. Balaji T · Ayanavaram, Chennai</div><p class="pj-desc">A clean diabetes &amp; general-physician practice site that builds trust fast and makes booking an appointment effortless.</p><div class="pj-chips"><span class="chip live">● Live</span><span class="chip wa">📞 +91 98405 13002</span></div><div class="pj-actions"><a href="https://rehan19-cmd.github.io/good-life-clinic/" target="_blank" class="btn btn-grad btn-sm">Visit Site ↗</a><a href="tel:+919840513002" class="btn btn-ghost btn-sm">Call Line</a></div></div>
+    </div>
+
+    <!-- 4 Shree Swami -->
+    <div class="project flip rv">
+      <div class="pj-visual"><a href="https://rehan19-cmd.github.io/shree-swami-sewa-clinic/" target="_blank" class="frame" data-tilt><div class="frame-bar"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="frame-url">rehan19-cmd.github.io/shree-swami-sewa-clinic</span></div><img src="shots/shree-swami.png" alt="Shree Swami Sewa Clinic" loading="lazy"></a></div>
+      <div class="pj-info"><div class="pj-no">04</div><div class="pj-cat">Healthcare · Specialist</div><h3 class="pj-name">Shree Swami Sewa Clinic</h3><div class="pj-loc">Kidney Stone Treatment Without Surgery · Virar</div><p class="pj-desc">A focused landing site for a specialist treatment — clear messaging, strong trust signals, and instant WhatsApp/call CTAs.</p><div class="pj-chips"><span class="chip live">● Live</span><span class="chip wa">📞 +91 97679 74738</span></div><div class="pj-actions"><a href="https://rehan19-cmd.github.io/shree-swami-sewa-clinic/" target="_blank" class="btn btn-grad btn-sm">Visit Site ↗</a><a href="tel:+919767974738" class="btn btn-ghost btn-sm">Call Line</a></div></div>
+    </div>
+
+    <!-- 5 Bright Shine -->
+    <div class="project rv">
+      <div class="pj-visual"><a href="https://rehan19-cmd.github.io/bright-shine-dental/" target="_blank" class="frame" data-tilt><div class="frame-bar"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="frame-url">rehan19-cmd.github.io/bright-shine-dental</span></div><img src="shots/bright-dental.png" alt="Bright & Shine Dental" loading="lazy"></a></div>
+      <div class="pj-info"><div class="pj-no">05</div><div class="pj-cat">Dental</div><h3 class="pj-name">Bright &amp; Shine Dental Square</h3><div class="pj-loc">Dr. Bansode · Pune</div><p class="pj-desc">A bright, modern dental-clinic site designed to win local trust and turn searches into booked chair time.</p><div class="pj-chips"><span class="chip live">● Live</span><span class="chip">🦷 Dental Clinic</span></div><div class="pj-actions"><a href="https://rehan19-cmd.github.io/bright-shine-dental/" target="_blank" class="btn btn-grad btn-sm">Visit Site ↗</a></div></div>
+    </div>
+
+    <!-- 6 Archana -->
+    <div class="project flip rv">
+      <div class="pj-visual"><a href="https://rehan19-cmd.github.io/archana-dental-clinic/" target="_blank" class="frame" data-tilt><div class="frame-bar"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="frame-url">rehan19-cmd.github.io/archana-dental-clinic</span></div><img src="shots/archana-dental.png" alt="Archana Aesthetic Dental" loading="lazy"></a></div>
+      <div class="pj-info"><div class="pj-no">06</div><div class="pj-cat">Dental · Aesthetic</div><h3 class="pj-name">Dr. Archana's Aesthetic Dental</h3><div class="pj-loc">Amanora Park Town · Pune</div><p class="pj-desc">An elegant aesthetic-dentistry site with a premium feel — built to attract smile-makeover and cosmetic patients.</p><div class="pj-chips"><span class="chip live">● Live</span><span class="chip">✨ Aesthetic Dentistry</span></div><div class="pj-actions"><a href="https://rehan19-cmd.github.io/archana-dental-clinic/" target="_blank" class="btn btn-grad btn-sm">Visit Site ↗</a></div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats" class="section">
+  <div class="inner stat-grid">
+    <div><div class="stat-num" data-t="6">0</div><div class="stat-label">Clients Served</div></div>
+    <div><div class="stat-num" data-t="3">0</div><div class="stat-label">Cities Served</div></div>
+    <div><div class="stat-num" data-t="100">0</div><div class="stat-label">% Mobile-First</div></div>
+    <div><div class="stat-num" data-t="24">0</div><div class="stat-label">Hr Avg Reply</div></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section">
+  <div class="inner">
+    <div style="margin-bottom:44px"><span class="tag rv">What I Do</span><h2 class="h2 split">Services</h2></div>
+    <div class="svc-grid">
+      <div class="svc rv"><div class="ic">🎨</div><h3>Business Websites</h3><p>Custom, modern sites for clinics, shops, agencies &amp; brands — designed to convert, not just look good.</p></div>
+      <div class="svc rv"><div class="ic">💬</div><h3>WhatsApp &amp; Call Booking</h3><p>One-tap WhatsApp and click-to-call wired in, so customers reach you instantly from any page.</p></div>
+      <div class="svc rv"><div class="ic">📱</div><h3>Mobile-First</h3><p>Built for the phone first — fast, thumb-friendly, and flawless on every screen size.</p></div>
+      <div class="svc rv"><div class="ic">✨</div><h3>3D &amp; Scroll Animation</h3><p>Cinematic scroll effects and tasteful 3D that make your brand feel premium and memorable.</p></div>
+      <div class="svc rv"><div class="ic">🔍</div><h3>SEO-Ready</h3><p>Clean structure, fast load and local-search basics so customers actually find you on Google.</p></div>
+      <div class="svc rv"><div class="ic">⚡</div><h3>Fast Delivery</h3><p>Clear scope, quick turnaround, and live hosting handled — you get a working site, not excuses.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CINEMATIC SHOWCASE (scroll-scrub video) -->
+<div id="cinema-showcase">
+  <div id="cs-sticky">
+    <canvas id="cs-canvas"></canvas>
+    <div id="cs-tint"></div>
+    <div class="cs-loader" id="cs-loader"><div class="cs-lbar"><span id="cs-lfill"></span></div><div class="cs-ltxt">Loading experience&hellip; <span id="cs-lpct">0%</span></div></div>
+    <div class="cs-panel" data-cs><span class="cs-eyebrow">How I Build</span><h2 class="cs-title">Built on a<br><em>modern stack.</em></h2></div>
+    <div class="cs-panel" data-cs><h2 class="cs-title">Your site, assembled<br><em>brick by brick.</em></h2><p class="cs-p">Clean code, fast and scalable foundations — Firebase, databases &amp; the right tools for the job. No flimsy templates.</p></div>
+    <div class="cs-panel" data-cs><h2 class="cs-title">Let's build<br><em>yours.</em></h2><a href="#contact" class="btn btn-grad" style="margin-top:22px">Start a Project ↓</a></div>
+    <div class="cs-prog"><span id="cs-fill"></span></div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="ct-inner">
+    <span class="tag rv" style="justify-content:center">Let's Build Yours</span>
+    <h2 class="ct-big split">Want a site like <em>these?</em></h2>
+    <p class="lead rv" style="margin:0 auto">Tell me about your business — I'll reply with ideas and a quote. Usually within a day.</p>
+    <div class="ct-actions rv">
+      <a href="https://wa.me/919623223336?text=Hi%20Mudassar%2C%20I%20saw%20your%20portfolio%20and%20want%20a%20website" target="_blank" class="btn btn-wa">💬 WhatsApp +91 96232 23336</a>
+      <a href="mailto:mudassaralikhan235@gmail.com" class="btn btn-ghost">✉ Email Me</a>
+    </div>
+    <div class="ct-meta rv">
+      <span>📞 <a href="tel:+919623223336">+91 96232 23336</a></span>
+      <span>✉ <a href="mailto:mudassaralikhan235@gmail.com">mudassaralikhan235@gmail.com</a></span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-logo">MUDASSAR<span>.</span></div>
+  <p class="foot-copy">© 2026 Mudassar — Web Designer &amp; Developer. Built from scratch, no templates.</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+const bigScreen=matchMedia('(pointer:fine) and (min-width:1024px)').matches;
+
+function splitText(el){const words=el.textContent.trim().split(' ');el.textContent='';words.forEach((w,wi)=>{const wrap=document.createElement('span');wrap.className='line-wrap';[...w].forEach(c=>{const s=document.createElement('span');s.className='char';s.textContent=c;wrap.appendChild(s);});el.appendChild(wrap);if(wi<words.length-1)el.appendChild(document.createTextNode(' '));});}
+document.querySelectorAll('.split').forEach(splitText);
+document.querySelectorAll('img').forEach(im=>im.addEventListener('error',()=>im.style.opacity=.0));
+
+/* preloader */
+const counter={v:0},plFill=document.querySelector('.pl-fill'),plPct=document.querySelector('.pl-pct');
+gsap.to('.pl-word,.pl-sub',{opacity:1,duration:.6,stagger:.1});
+gsap.to(counter,{v:100,duration:1.5,ease:'power2.inOut',onUpdate(){const v=Math.round(counter.v);plFill.style.width=v+'%';plPct.textContent=v+'%';},onComplete:reveal});
+let revealed=false;
+function reveal(){if(revealed)return;revealed=true;
+  gsap.timeline({onComplete:()=>{const pl=document.getElementById('preload');if(pl)pl.style.display='none';document.body.classList.remove('no-scroll');ScrollTrigger.refresh();heroIn();}})
+    .to('.pl-word,.pl-bar,.pl-pct,.pl-sub',{opacity:0,y:-18,duration:.4}).to('#preload',{opacity:0,duration:.4},'-=.1');
+}
+setTimeout(()=>{if(!revealed)reveal();},3500);
+
+function heroIn(){gsap.timeline()
+  .to('#h-eye',{opacity:1,y:0,duration:.6,ease:'power3.out'})
+  .to('.hero-title .ch',{opacity:1,y:'0%',duration:.7,ease:'power3.out',stagger:.02},'-=.2')
+  .to('#h-sub',{opacity:1,duration:.6},'-=.3').to('#h-btns',{opacity:1,y:0,duration:.6},'-=.4')
+  .to('#h-trust',{opacity:1,duration:.6},'-=.3').to('#me-badge',{opacity:1,duration:.6},'-=.5').to('#h-cue',{opacity:1,duration:.5},'-=.2');}
+
+gsap.to('#progress',{scaleX:1,ease:'none',scrollTrigger:{start:0,end:'max',scrub:.3}});
+addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>60));
+gsap.to('.orb-1',{yPercent:26,xPercent:8,ease:'none',scrollTrigger:{start:0,end:'max',scrub:true}});
+gsap.to('.orb-2',{yPercent:-22,xPercent:-10,ease:'none',scrollTrigger:{start:0,end:'max',scrub:true}});
+gsap.to('.orb-1',{x:'+=40',y:'+=24',duration:9,yoyo:true,repeat:-1,ease:'sine.inOut'});
+
+/* 3D hero + project tilt (desktop) */
+if(bigScreen){
+  const stage=document.getElementById('hero3d');
+  if(stage){addEventListener('mousemove',e=>{const x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;gsap.to(stage,{rotateY:x*12,rotateX:-y*9,duration:.9,ease:'power2.out',transformPerspective:1500});});
+    gsap.utils.toArray('.h3').forEach((c,i)=>{gsap.to(c,{y:(i%2?-1:1)*20,duration:4+i*.5,yoyo:true,repeat:-1,ease:'sine.inOut'});gsap.to(c,{y:(i%2?1:-1)*80,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:1}});});}
+  document.querySelectorAll('.frame[data-tilt]').forEach(f=>{
+    f.addEventListener('mousemove',e=>{const r=f.getBoundingClientRect();const px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;f.style.transform=`perspective(1000px) rotateY(${px*8}deg) rotateX(${-py*8}deg) translateZ(14px)`;});
+    f.addEventListener('mouseleave',()=>f.style.transform='');});
+}
+
+/* reveals + 3D project entrance */
+gsap.utils.toArray('.split').forEach(el=>gsap.to(el.querySelectorAll('.char'),{y:'0%',duration:.8,ease:'power3.out',stagger:.02,scrollTrigger:{trigger:el,start:'top 88%'}}));
+gsap.utils.toArray('.project').forEach(p=>{const vis=p.querySelector('.pj-visual'),info=p.querySelector('.pj-info'),flip=p.classList.contains('flip');
+  gsap.fromTo(vis,{opacity:0,x:flip?60:-60,rotateY:flip?-12:12},{opacity:1,x:0,rotateY:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:p,start:'top 80%'}});
+  gsap.fromTo(info,{opacity:0,y:40},{opacity:1,y:0,duration:.9,ease:'power3.out',scrollTrigger:{trigger:p,start:'top 78%'}});});
+document.querySelectorAll('.stat-num[data-t]').forEach(el=>{const t=parseFloat(el.dataset.t);
+  ScrollTrigger.create({trigger:el,start:'top 90%',once:true,onEnter:()=>gsap.fromTo({v:0},{v:t},{duration:1.8,ease:'power2.out',onUpdate(){el.textContent=Math.round(this.targets()[0].v);}})});});
+gsap.utils.toArray('.rv').forEach(el=>gsap.to(el,{opacity:1,y:0,duration:.85,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 92%'}}));
+gsap.from('.svc',{opacity:0,y:36,stagger:.06,duration:.6,ease:'power3.out',scrollTrigger:{trigger:'.svc-grid',start:'top 86%'}});
+
+/* nav */
+const ham=document.getElementById('ham'),mm=document.getElementById('mobile-menu');let open=false;
+function closeMM(){open=false;ham.classList.remove('open');mm.classList.remove('open');document.body.classList.remove('no-scroll');}
+ham.addEventListener('click',()=>open?closeMM():(open=true,ham.classList.add('open'),mm.classList.add('open'),document.body.classList.add('no-scroll')));
+addEventListener('keydown',e=>e.key==='Escape'&&closeMM());
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const h=a.getAttribute('href');const t=document.querySelector(h);if(t&&h!=='#'){e.preventDefault();closeMM();gsap.to(window,{duration:1,scrollTo:t,ease:'power3.inOut'});}}));
+
+/* cinematic scroll-scrub video (end of site) */
+(function(){
+  const TOTAL=240,PATH=i=>`frames/frame_${String(i).padStart(3,'0')}.jpg`;
+  const canvas=document.getElementById('cs-canvas');if(!canvas)return;const ctx=canvas.getContext('2d');
+  const fill=document.getElementById('cs-fill'),loader=document.getElementById('cs-loader'),lf=document.getElementById('cs-lfill'),lp=document.getElementById('cs-lpct');
+  const imgs=new Array(TOTAL);let loaded=0,ready=false,cur=-1;
+  function draw(i){const im=imgs[i];if(!im||!im.complete||i===cur)return;if(canvas.width!==im.naturalWidth){canvas.width=im.naturalWidth;canvas.height=im.naturalHeight;}ctx.drawImage(im,0,0,canvas.width,canvas.height);cur=i;}
+  for(let i=1;i<=TOTAL;i++){const im=new Image();im.onload=im.onerror=()=>{loaded++;const p=Math.round(loaded/TOTAL*100);if(lf)lf.style.width=p+'%';if(lp)lp.textContent=p+'%';if(loaded===TOTAL&&!ready){ready=true;draw(0);if(loader)loader.classList.add('hide');ScrollTrigger.refresh();}};im.src=PATH(i);imgs[i-1]=im;}
+  ScrollTrigger.create({trigger:'#cinema-showcase',start:'top top',end:'bottom bottom',scrub:true,onUpdate(s){const p=s.progress;if(ready)draw(Math.min(TOTAL-1,Math.round(p*(TOTAL-1))));if(fill)fill.style.width=(p*100).toFixed(1)+'%';}});
+  const panels=gsap.utils.toArray('.cs-panel');
+  panels.forEach((panel,i)=>{const isLast=i===panels.length-1,seg=1/panels.length,sP=i*seg;
+    gsap.fromTo(panel,{opacity:0,y:50,filter:'blur(10px)'},{opacity:1,y:0,filter:'blur(0px)',ease:'power2.out',immediateRender:false,scrollTrigger:{trigger:'#cinema-showcase',start:`top+=${sP*100}% top`,end:`top+=${(sP+seg*.4)*100}% top`,scrub:true}});
+    if(!isLast)gsap.to(panel,{opacity:0,y:-40,filter:'blur(10px)',ease:'power2.in',immediateRender:false,scrollTrigger:{trigger:'#cinema-showcase',start:`top+=${(sP+seg*.62)*100}% top`,end:`top+=${(sP+seg)*100}% top`,scrub:true}});
+  });
+})();
+
+/* safety net */
+addEventListener('load',()=>{ScrollTrigger.refresh();setTimeout(()=>{ScrollTrigger.refresh();
+  document.querySelectorAll('.rv,.project,.svc').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0&&parseFloat(getComputedStyle(el).opacity)<.05)gsap.set(el,{opacity:1,x:0,y:0});});
+  document.querySelectorAll('.split .char').forEach(c=>{const r=c.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)gsap.set(c,{y:'0%'});});},500);});
+</script>
+</body>
+</html>
