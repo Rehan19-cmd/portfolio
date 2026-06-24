@@ -187,6 +187,21 @@ nav.scrolled{background:rgba(10,10,15,.72);backdrop-filter:blur(20px);border-bot
 .cs-prog{position:absolute;left:0;bottom:0;height:3px;width:100%;background:rgba(255,255,255,.07);z-index:4}
 .cs-prog span{display:block;height:100%;width:0;background:var(--grad)}
 
+/* MOBILE: framed auto-play video instead of canvas scrub */
+#cinema-mobile{display:none}
+@media(max-width:768px){
+  #cinema-showcase{display:none}
+  #cinema-mobile{display:block;background:#06070c;padding:72px var(--pad)}
+  .cm-head{text-align:center;max-width:640px;margin:0 auto 24px}
+  .cm-eyebrow{display:inline-block;font-size:.64rem;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--c);margin-bottom:12px}
+  .cm-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(1.8rem,8vw,2.6rem);line-height:1.12;letter-spacing:-.5px}
+  .cm-title em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .cm-video{width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 26px 60px rgba(0,0,0,.55);background:#06070c}
+  .cm-video video{width:100%;height:100%;object-fit:cover;display:block}
+  .cm-p{margin:20px auto 0;max-width:440px;text-align:center;color:rgba(238,240,246,.82);font-weight:300;font-size:.98rem;line-height:1.7}
+  .cm-cta{display:flex;justify-content:center;margin-top:22px}
+}
+
 /* CONTACT */
 #contact{background:var(--bg2);position:relative;overflow:hidden;text-align:center}
 #contact::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(167,139,250,.1),transparent 70%)}
@@ -354,6 +369,17 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:40px var(--
   </div>
 </div>
 
+<!-- MOBILE: framed auto-play video -->
+<section id="cinema-mobile">
+  <div class="cm-head">
+    <span class="cm-eyebrow">How I Build</span>
+    <h2 class="cm-title">Your site, assembled <em>brick by brick.</em></h2>
+  </div>
+  <div class="cm-video"><video src="portfolio.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
+  <p class="cm-p">Clean code, fast and scalable foundations — Firebase, databases &amp; the right tools for the job. No flimsy templates.</p>
+  <div class="cm-cta"><a href="#contact" class="btn btn-grad">Start a Project ↓</a></div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact" class="section">
   <div class="ct-inner">
@@ -445,6 +471,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
 
 /* cinematic scroll-scrub video (end of site) */
 (function(){
+  if(matchMedia('(max-width:768px)').matches)return; /* mobile uses the <video> instead — skip 240-frame preload */
   const TOTAL=240,PATH=i=>`frames/frame_${String(i).padStart(3,'0')}.jpg`;
   const canvas=document.getElementById('cs-canvas');if(!canvas)return;const ctx=canvas.getContext('2d');
   const fill=document.getElementById('cs-fill'),loader=document.getElementById('cs-loader'),lf=document.getElementById('cs-lfill'),lp=document.getElementById('cs-lpct');
